@@ -9,7 +9,7 @@ public class Observer_files
     {
         //ArrayList<File> fileList = new ArrayList<>();
         //fileList.add(new File(""));
-        File fyt = new File("D:\Документы\NetBeansProjects\Observer_files\test.txt");
+        //File fyt = new File("D:\Документы\NetBeansProjects\Observer_files\test.txt");
         
         System.out.println("Hello World!");
     }
