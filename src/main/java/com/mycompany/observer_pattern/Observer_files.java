@@ -9,13 +9,11 @@ public class Observer_files
     {
         ArrayList<FileObj> fileList = new ArrayList();
         
-        FileObj fileObserv = new FileObj("D:\\test");
+        FileObj fileObserv = new FileObj("D:\\test.txt");
         
         while(true)
-        {
             if(fileObserv.update())
-                System.out.print(fileObserv.updateList());
-        }
+                System.out.println(fileObserv.updateList());
         
     }
 }

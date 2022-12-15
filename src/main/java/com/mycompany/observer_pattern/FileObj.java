@@ -10,7 +10,7 @@ public class FileObj
     long fileLastUpdate;
     long fileLength;
     boolean fileExist;
-    ArrayList<String> fileUpdateBuff;
+    ArrayList<String> fileUpdateBuff = new ArrayList<>();
     
     FileObj(String path) {
         
@@ -27,22 +27,23 @@ public class FileObj
     {
         boolean status = false;
         
-        boolean tmp = fileObj.exists();
-        if(tmp != fileExist)
+        long tmp = fileObj.length();
+        if(tmp != fileLength)
         {              
-            if(tmp)
-                fileUpdateBuff.add("Файл появился");
-            else
-                fileUpdateBuff.add("Файл исчез");
-            
+            //if(tmp)
+                fileUpdateBuff.add("Файл обновился " + tmp + " Байт");
+            //else
+                //fileUpdateBuff.add("Файл исчез");
+            fileLength = tmp;
             status = true;
+            
         } 
         return status;
     }
     
     ArrayList<String> updateList()
     {
-        ArrayList<String> tmp = fileUpdateBuff;
+        ArrayList<String> tmp = new ArrayList<>(fileUpdateBuff);
         fileUpdateBuff.clear();
         return tmp;
     }
