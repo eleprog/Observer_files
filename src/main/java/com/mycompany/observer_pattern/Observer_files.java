@@ -7,10 +7,15 @@ public class Observer_files
 {
     public static void main(String[] args)
     {
-        //ArrayList<File> fileList = new ArrayList<>();
-        //fileList.add(new File(""));
-        //File fyt = new File("D:\Документы\NetBeansProjects\Observer_files\test.txt");
+        ArrayList<FileObj> fileList = new ArrayList();
         
-        System.out.println("Hello World!");
+        FileObj fileObserv = new FileObj("D:\\test");
+        
+        while(true)
+        {
+            if(fileObserv.update())
+                System.out.print(fileObserv.updateList());
+        }
+        
     }
 }
