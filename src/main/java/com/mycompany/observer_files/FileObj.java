@@ -4,14 +4,16 @@ import java.io.File;
 
 public class FileObj 
 {
-    private String filePath;
-    private File fileObj;   
+    private final String filePath;
+    private final File fileObj;   
+    
     private long fileLastUpdate;
     private long fileSize;
     private boolean fileExist;
     private String fileUpdateMessage;
      
-    FileObj(String path) {       
+    // конструктор принимающий путь на файл
+    FileObj(String path) {
         filePath = path;
         fileObj = new File(path);
         
@@ -20,7 +22,9 @@ public class FileObj
         fileSize = fileObj.length();
     }
     
-    boolean getUpdateStatus() {
+    // получение статуса файла (обновлен или нет)
+    // формирование сообщения о том, что именно изменилось в файле
+    public boolean getUpdateStatus() {
         boolean status = false;          
         boolean tmpExist = fileObj.exists();
         
@@ -54,10 +58,12 @@ public class FileObj
         return status;
     }
     
+    // получение сообщения о изменении файла
     String getUpdateMessage() {
         return fileUpdateMessage;
     }
     
+    // получение ссылки на файл
     String getFilePath() {
         return filePath;
     }
