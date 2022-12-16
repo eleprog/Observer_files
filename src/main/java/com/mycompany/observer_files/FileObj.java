@@ -1,7 +1,6 @@
 package com.mycompany.observer_files;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class FileObj 
 {
