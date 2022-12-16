@@ -7,6 +7,6 @@ public class FileObserverToConsole implements IFileObserver {
     // вывод списка изменений файлов
     public void updateFileHandler(ArrayList<String> MessagesArr) {
         for(String message: MessagesArr)
-        System.out.println(message);
+            System.out.println(message);
     }   
 }
