@@ -5,63 +5,60 @@ import java.util.ArrayList;
 
 public class FileObj 
 {
-    File fileObj;
-    String filePath;
-    long fileLastUpdate;
-    long fileLength;
-    boolean fileExist;
-    ArrayList<String> fileUpdateBuff = new ArrayList<>();
-    
-    FileObj(String path) {
-        
+    private String filePath;
+    private File fileObj;   
+    private long fileLastUpdate;
+    private long fileSize;
+    private boolean fileExist;
+    private String fileUpdateMessage;
+     
+    FileObj(String path) {       
         filePath = path;
         fileObj = new File(path);
+        
         fileExist = fileObj.exists();
-        
-        
-        //length();
-        //lastUpdate();
+        fileLastUpdate = fileObj.lastModified();
+        fileSize = fileObj.length();
     }
     
-    boolean update()
-    {
-        boolean status = false;
+    boolean getUpdateStatus() {
+        boolean status = false;          
+        boolean tmpExist = fileObj.exists();
         
-        long tmp = fileObj.length();
-        if(tmp != fileLength)
-        {              
-            //if(tmp)
-                fileUpdateBuff.add("Файл обновился " + tmp + " Байт");
-            //else
-                //fileUpdateBuff.add("Файл исчез");
-            fileLength = tmp;
-            status = true;
-            
-        } 
+        if(tmpExist != fileExist) {
+            if(tmpExist)
+                fileUpdateMessage = "Файл " + fileObj.getName() + " создан";
+            else
+                fileUpdateMessage = "Файл " + fileObj.getName() + " удалён";
+            fileExist = tmpExist;
+            status = true;     
+        }
+        
+        if(tmpExist) {
+            long tmpLastUpdate = fileObj.lastModified();
+            long tmpSize = fileObj.length();
+
+            if(tmpLastUpdate != fileLastUpdate) {
+                fileLastUpdate = tmpLastUpdate;
+
+                if(tmpSize != fileSize) {
+                    fileUpdateMessage = "Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
+                    fileSize = tmpSize;
+                }
+                else
+                    fileUpdateMessage = "Файл " + fileObj.getName() + " модифицирован";
+                
+                status = true;
+            }
+        }
+        
         return status;
     }
     
-    ArrayList<String> updateList()
+    String getUpdateMessage()
     {
-        ArrayList<String> tmp = new ArrayList<>(fileUpdateBuff);
-        fileUpdateBuff.clear();
+        String tmp = fileUpdateMessage;
+        fileUpdateMessage = " ";
         return tmp;
-    }
-    
-    
-    private boolean exists() {
-        return fileObj.exists() != fileExist;
-    }
-    
-    private void length()
-    {
-        
-              
-    }
-    
-    private void lastUpdate()
-    {
-        
-               
-    }        
+    }      
 }
