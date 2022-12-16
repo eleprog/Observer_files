@@ -1,6 +1,7 @@
 package com.mycompany.observer_files;
 
 import java.io.File;
+import java.util.Date;
 
 public class FileObj 
 {
@@ -30,9 +31,9 @@ public class FileObj
         
         if(tmpExist != fileExist) {
             if(tmpExist)
-                fileUpdateMessage = "Файл " + fileObj.getName() + " создан";
+                fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " создан";
             else
-                fileUpdateMessage = "Файл " + fileObj.getName() + " удалён";
+                fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " удалён";
             fileExist = tmpExist;
             status = true;     
         }
@@ -45,11 +46,11 @@ public class FileObj
                 fileLastUpdate = tmpLastUpdate;
 
                 if(tmpSize != fileSize) {
-                    fileUpdateMessage = "Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
+                    fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
                     fileSize = tmpSize;
                 }
                 else
-                    fileUpdateMessage = "Файл " + fileObj.getName() + " модифицирован";
+                    fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " модифицирован";
                 
                 status = true;
             }

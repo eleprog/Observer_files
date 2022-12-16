@@ -9,7 +9,7 @@ public class ConsoleFileMonitor implements IFileMonitor
     private ArrayList<String> updateFileMessage = new ArrayList<>();    // список всех изменений в файлах
     
     
-     // конструктор принимающий массив путей на файлы
+     // конструктор создающий объект класса ConsoleFileMonitor
     ConsoleFileMonitor(){  
 
     }
