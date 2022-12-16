@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ConsoleFileMonitor implements IFileMonitor
 {
-    ArrayList<FileObj> fileList;
-    ArrayList<IFileObserver> observers;
-    ArrayList<String> updateFileMessage;
+    private ArrayList<FileObj> fileList = new ArrayList<>();
+    private ArrayList<IFileObserver> observers = new ArrayList<>();
+    private ArrayList<String> updateFileMessage = new ArrayList<>();
     
     ConsoleFileMonitor(String[] pathArr){
         for(String path: pathArr)
