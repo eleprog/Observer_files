@@ -1,4 +1,4 @@
-package com.mycompany.observer_pattern;
+package com.mycompany.observer_files;
 
 import java.io.File;
 import java.util.ArrayList;
