@@ -6,18 +6,18 @@ public class ConsoleFileMonitor implements IFileMonitor
 {
     ArrayList<FileObj> fileList;
     ArrayList<IFileObserver> observers;
-    String[] updateFileMessage;
+    ArrayList<String> updateFileMessage;
     
     ConsoleFileMonitor(String[] pathArr){
         for(String path: pathArr)
             fileList.add(new FileObj(path));
     }
                       
-    boolean addFile(String path) {
+    public boolean addFile(String path) {
         return fileList.add(new FileObj(path));
     }
     
-    boolean removeFile(String path) {
+    public boolean removeFile(String path) {
         return fileList.remove(new FileObj(path));
     }
     
@@ -30,10 +30,22 @@ public class ConsoleFileMonitor implements IFileMonitor
     public void removeFileObserver(IFileObserver Obj) {
         fileList.remove(Obj);
     }
-
+    
     @Override
     public void notifyFileObserver() {
         for(IFileObserver fileObserv: observers)
             fileObserv.updateFileHandler(updateFileMessage);
-    }   
+    }
+    
+    public void checkFile()
+    {
+        boolean status = false;
+        updateFileMessage.clear();
+        
+        for(FileObj file: fileList)
+            if(file.getUpdateStatus())
+                updateFileMessage.add(file.getUpdateMessage());
+  
+        this.notifyFileObserver();
+    }
 }

@@ -55,14 +55,11 @@ public class FileObj
         return status;
     }
     
-    String getUpdateMessage()
-    {
-        String tmp = fileUpdateMessage;
-        fileUpdateMessage = " ";
-        return tmp;
+    String getUpdateMessage() {
+        return fileUpdateMessage;
     }
     
-    String getFilePath(){
+    String getFilePath() {
         return filePath;
     }
     

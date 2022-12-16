@@ -7,16 +7,19 @@ public class Observer_files
 {
     public static void main(String[] args) throws InterruptedException
     {
-        ArrayList<FileObj> fileList = new ArrayList();
+        String[] pathArr = {"test1.txt",
+                            "test2.txt",
+                            "test3.txt",
+                            "test4.txt",
+                            "test5.txt",
+                            "test6.txt"};
         
-        FileObj fileObserv = new FileObj("G:\\test.txt");
+        ConsoleFileMonitor fileMonitor = new ConsoleFileMonitor(pathArr);
         
-        fileObserv.
-        /*while(true)
+        while(true)
         {
             Thread.sleep(1000);
-            if(fileObserv.update())
-                System.out.println(fileObserv.getUpdateMessage());
-        }*/
+            fileMonitor.checkFile();              
+        }
     }
 }
