@@ -5,15 +5,18 @@ import java.util.ArrayList;
 
 public class Observer_files
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         ArrayList<FileObj> fileList = new ArrayList();
         
-        FileObj fileObserv = new FileObj("D:\\test.txt");
+        FileObj fileObserv = new FileObj("G:\\test.txt");
         
-        while(true)
+        fileObserv.
+        /*while(true)
+        {
+            Thread.sleep(1000);
             if(fileObserv.update())
-                System.out.println(fileObserv.updateList());
-        
+                System.out.println(fileObserv.getUpdateMessage());
+        }*/
     }
 }

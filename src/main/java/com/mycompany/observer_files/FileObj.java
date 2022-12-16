@@ -60,5 +60,15 @@ public class FileObj
         String tmp = fileUpdateMessage;
         fileUpdateMessage = " ";
         return tmp;
-    }      
+    }
+    
+    String getFilePath(){
+        return filePath;
+    }
+    
+    @Override
+    public boolean equals(Object Obj) {
+        return Obj instanceof FileObj && filePath.equals(((FileObj)Obj).getFilePath());
+    }
+    
 }

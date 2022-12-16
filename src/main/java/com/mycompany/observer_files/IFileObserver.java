@@ -5,5 +5,5 @@ import java.io.File;
 
 public interface IFileObserver 
 {
-    void updateFileHandler(ArrayList<File> data);
+    void updateFileHandler(String[] data);
 }
