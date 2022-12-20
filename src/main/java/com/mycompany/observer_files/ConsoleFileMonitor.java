@@ -26,25 +26,34 @@ public class ConsoleFileMonitor implements IFileMonitor
     }
     
     // добавление файла для слежения
-    public boolean addFile(String path) {   
-        return fileList.add(new FileObj(path));
+    public boolean addFile(String path) {
+        FileObj fileObj = new FileObj(path);
+        
+        if(fileList.lastIndexOf(fileObj) == -1) {
+            fileList.add(fileObj);
+            return true;
+        }
+        else
+            return false;
     }
     
     // удаление файла для слежения
-    public boolean removeFile(String path) {    
+    public boolean removeFile(String path) {
         return fileList.remove(new FileObj(path));
     }
     
     @Override
     // добавление наблюдателя
-    public void addFileObserver(IFileObserver Obj) {    
-        observers.add(Obj);
+    public void addFileObserver(IFileObserver Obj) {
+        if(Obj != null)
+            observers.add(Obj);
     }
 
     @Override
     // удаление наблюдателя
-    public void removeFileObserver(IFileObserver Obj) { 
-        fileList.remove(Obj);
+    public void removeFileObserver(IFileObserver Obj) {
+        if(Obj != null)
+            fileList.remove(Obj);
     }
     
     
