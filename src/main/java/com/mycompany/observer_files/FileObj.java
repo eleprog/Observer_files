@@ -16,11 +16,11 @@ public class FileObj
     // конструктор принимающий путь на файл
     FileObj(String path) {
         filePath = path;
-        fileObj = new File(path);
+        fileObj  = new File(path);
         
-        fileExist = fileObj.exists();
-        fileLastUpdate = fileObj.lastModified();
-        fileSize = fileObj.length();
+        fileExist       = fileObj.exists();
+        fileLastUpdate  = fileObj.lastModified();
+        fileSize        = fileObj.length();
     }
     
     // получение статуса файла (обновлен или нет)
@@ -46,11 +46,11 @@ public class FileObj
                 fileLastUpdate = tmpLastUpdate;
 
                 if(tmpSize != fileSize) {
-                    fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
+                    fileUpdateMessage = new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
                     fileSize = tmpSize;
                 }
                 else
-                    fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " модифицирован";
+                    fileUpdateMessage = new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован";
                 
                 status = true;
             }
