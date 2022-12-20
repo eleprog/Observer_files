@@ -26,16 +26,18 @@ public class FileObj
     // получение статуса файла (обновлен или нет)
     // формирование сообщения о том, что именно изменилось в файле
     public boolean getUpdateStatus() {
-        boolean status = false;          
+        boolean status = false;
         boolean tmpExist = fileObj.exists();
+        
+        fileUpdateMessage = "";
         
         if(tmpExist != fileExist) {
             if(tmpExist)
-                fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " создан";
+                fileUpdateMessage += new Date() + " Файл " + fileObj.getName() + " создан";
             else
-                fileUpdateMessage = new Date() + " Файл " + fileObj.getName() + " удалён";
+                fileUpdateMessage += new Date() + " Файл " + fileObj.getName() + " удалён";
             fileExist = tmpExist;
-            status = true;     
+            status = true;
         }
         
         if(tmpExist) {
@@ -44,13 +46,16 @@ public class FileObj
 
             if(tmpLastUpdate != fileLastUpdate) {
                 fileLastUpdate = tmpLastUpdate;
-
+                
+                if(status)
+                    fileUpdateMessage += ("\n");
+                    
                 if(tmpSize != fileSize) {
-                    fileUpdateMessage = new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
+                    fileUpdateMessage += new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
                     fileSize = tmpSize;
                 }
                 else
-                    fileUpdateMessage = new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован";
+                    fileUpdateMessage += new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован";
                 
                 status = true;
             }
