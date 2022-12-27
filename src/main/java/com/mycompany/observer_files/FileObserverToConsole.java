@@ -4,8 +4,10 @@ import java.util.ArrayList;
 public class FileObserverToConsole implements IFileObserver {
     private static FileObserverToConsole instance;
     
-    private FileObserverToConsole(){};
-    
+    private FileObserverToConsole(){
+        
+    }
+   
     @Override
     // вывод списка изменений файлов
     public void updateFileHandler(ArrayList<String> messagesArr) {
@@ -13,7 +15,7 @@ public class FileObserverToConsole implements IFileObserver {
             System.out.println(message);
     }
     
-    static FileObserverToConsole getInstance() {
+    public static FileObserverToConsole getInstance() {
         if(instance == null)
             return new FileObserverToConsole();
         else
