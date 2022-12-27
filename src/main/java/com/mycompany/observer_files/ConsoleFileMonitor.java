@@ -44,9 +44,16 @@ public class ConsoleFileMonitor implements IFileMonitor
     
     @Override
     // добавление наблюдателя
-    public void addFileObserver(IFileObserver Obj) {
-        if(Obj != null)
-            observers.add(Obj);
+    public boolean addFileObserver(IFileObserver Obj) { 
+        if(Obj == null) 
+            return false;
+        
+        for(IFileObserver observ: observers)     
+            if(observ == Obj)
+                return false;
+      
+        observers.add(Obj);
+        return true;     
     }
 
     @Override

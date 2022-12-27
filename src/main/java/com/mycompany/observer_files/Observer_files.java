@@ -4,13 +4,14 @@ public class Observer_files
 {
     public static void main(String[] args) throws InterruptedException
     {
-        String[] pathArr = {"test_files\\test1.txt",    // список путей на файлы за которыми мы хотим следить
+        // список путей на файлы за которыми мы хотим следить
+        String[] pathArr = {"test_files\\test1.txt",    
                             "test_files\\test2.txt",
                             "test_files\\test3.txt",
                             "test_files\\test4.txt"};
               
-        ConsoleFileMonitor fileMonitor = new ConsoleFileMonitor(pathArr);       // создаём наблюдаемого и передаём туда массив путей на файлы
-        fileMonitor.addFileObserver(FileObserverToConsole.getInstance());                     // добавляем наблюдаемому ссылку на наблюдателя
+        // создаём наблюдаемого и передаём туда массив путей на файлы
+        ConsoleFileMonitor fileMonitor = new ConsoleFileMonitor(pathArr);       
         
         fileMonitor.addFile("test_files\\test5.txt");
         fileMonitor.addFile("test_files\\test6.txt");

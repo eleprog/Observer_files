@@ -17,7 +17,7 @@ public class FileObserverToConsole implements IFileObserver {
     
     public static FileObserverToConsole getInstance() {
         if(instance == null)
-            return new FileObserverToConsole();
+            instance = new FileObserverToConsole();
         
         return instance;
     }
