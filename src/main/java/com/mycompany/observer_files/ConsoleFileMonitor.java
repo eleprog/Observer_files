@@ -58,11 +58,12 @@ public class ConsoleFileMonitor implements IFileMonitor
 
     @Override
     // удаление наблюдателя
-    public void removeFileObserver(IFileObserver Obj) {
-        if(Obj != null)
-            fileList.remove(Obj);
+    public boolean removeFileObserver(IFileObserver Obj) {
+        if(Obj == null)
+            return false;
+        
+        return fileList.remove(Obj);   
     }
-    
     
     @Override
     // оповещение наблюдателей о событии
@@ -72,8 +73,7 @@ public class ConsoleFileMonitor implements IFileMonitor
     }
     
     // проверка состояния файлов
-    public void checkFile() 
-    {
+    public void checkFile() {
         boolean status = false;
         updateFileMessage.clear();
         
