@@ -9,10 +9,8 @@ public class Observer_files
                             "test_files\\test3.txt",
                             "test_files\\test4.txt"};
               
-        FileObserverToConsole observerToConsole = new FileObserverToConsole();  //создаём объект наблюдателя печатающего в консоль
-        
         ConsoleFileMonitor fileMonitor = new ConsoleFileMonitor(pathArr);       // создаём наблюдаемого и передаём туда массив путей на файлы
-        fileMonitor.addFileObserver(observerToConsole);                     // добавляем наблюдаемому ссылку на наблюдателя
+        fileMonitor.addFileObserver(FileObserverToConsole.getInstance());                     // добавляем наблюдаемому ссылку на наблюдателя
         
         fileMonitor.addFile("test_files\\test5.txt");
         fileMonitor.addFile("test_files\\test6.txt");
