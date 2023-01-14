@@ -1,12 +1,13 @@
 package com.mycompany.observer_files;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleFileMonitor implements IFileMonitor
 {
     private ArrayList<FileObj> fileList = new ArrayList<>();            // список объектов для работы с файлами
     private ArrayList<IFileObserver> observers = new ArrayList<>();     // список наблюдателей
-    private ArrayList<String> updateFileMessage = new ArrayList<>();    // список всех изменений в файлах
+    private ArrayList<FileInfo> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
     
     
      // конструктор создающий объект класса ConsoleFileMonitor
@@ -15,7 +16,7 @@ public class ConsoleFileMonitor implements IFileMonitor
     }
     
     // конструктор принимающий один путь на файл
-    ConsoleFileMonitor(String path){   
+    ConsoleFileMonitor(String path){
         fileList.add(new FileObj(path));
     }
     
@@ -61,18 +62,18 @@ public class ConsoleFileMonitor implements IFileMonitor
     // оповещение наблюдателей о событии
     public void notifyFileObserver() {      
         for(IFileObserver fileObserv: observers)
-            fileObserv.updateFileHandler(updateFileMessage);
+            fileObserv.updateFileHandler(fileUpdatesList);
     }
     
     // проверка состояния файлов
     public void checkFile() 
     {
         boolean status = false;
-        updateFileMessage.clear();
+        fileUpdatesList.clear();
         
         for(FileObj file: fileList)
             if(file.getUpdateStatus()) {
-                updateFileMessage.add(file.getUpdateMessage());
+                fileUpdatesList.add(file.getFileInfo());
                 status = true;
             }
   

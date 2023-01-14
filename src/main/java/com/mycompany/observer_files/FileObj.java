@@ -1,74 +1,60 @@
 package com.mycompany.observer_files;
 
 import java.io.File;
-import java.util.Date;
 
-public class FileObj 
-{
+public class FileObj {
+
     private final String filePath;
     private final File fileObj;   
-    
-    private long fileLastUpdate;
+
+    private long fileLastModify;
     private long fileSize;
     private boolean fileExist;
-    private String fileUpdateMessage;
-     
+
+
     // конструктор принимающий путь на файл
     FileObj(String path) {
         filePath = path;
         fileObj  = new File(path);
-        
-        fileExist       = fileObj.exists();
-        fileLastUpdate  = fileObj.lastModified();
-        fileSize        = fileObj.length();
+
+        fileInfoUpdate();
     }
     
     // получение статуса файла (обновлен или нет)
-    // формирование сообщения о том, что именно изменилось в файле
     public boolean getUpdateStatus() {
-        boolean status = false;
-        boolean tmpExist = fileObj.exists();
-        
-        fileUpdateMessage = "";
-        
-        if(tmpExist != fileExist) {
-            if(tmpExist)
-                fileUpdateMessage += new Date() + " Файл " + fileObj.getName() + " создан";
-            else
-                fileUpdateMessage += new Date() + " Файл " + fileObj.getName() + " удалён";
-            fileExist = tmpExist;
-            status = true;
+        if(fileObj.lastModified() != fileLastModify) {
+            return true;
         }
-        
-        if(tmpExist) {
-            long tmpLastUpdate = fileObj.lastModified();
-            long tmpSize = fileObj.length();
+        return false;
+    }
 
-            if(tmpLastUpdate != fileLastUpdate) {
-                fileLastUpdate = tmpLastUpdate;
-                
-                if(status)
-                    fileUpdateMessage += ("\n");
-                    
-                if(tmpSize != fileSize) {
-                    fileUpdateMessage += new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован: изменён размер (" + fileSize + " байт  ->  " + tmpSize + " байт)";
-                    fileSize = tmpSize;
-                }
-                else
-                    fileUpdateMessage += new Date(fileLastUpdate) + " Файл " + fileObj.getName() + " модифицирован";
-                
-                status = true;
-            }
-        }
-        
-        return status;
+    /** получение информации о файле filePath; fileSize(old); fileLastModify(old); fileSize; fileExist
+     *
+     * @return структура данных о файле с полями: path, sizeOld, size, lastModifyOld, lastModify, exist
+     */
+    FileInfo getFileInfo() {
+        FileInfo data = new FileInfo();
+
+        data.path = filePath;
+        data.existOld = fileExist;
+        data.sizeOld = fileSize;
+        data.lastModifyOld = fileLastModify;
+
+        fileInfoUpdate();
+        data.lastModify = fileLastModify;
+        data.size = fileSize;
+        data.exist = fileExist;
+
+        return data;
     }
-    
-    // получение сообщения о изменении файла
-    String getUpdateMessage() {
-        return fileUpdateMessage;
+
+    // обновление данных о файле
+    private void fileInfoUpdate() {
+        fileExist       = fileObj.exists();
+        fileLastModify  = fileObj.lastModified();
+        fileSize        = fileObj.length();
     }
-    
+
     // получение ссылки на файл
     String getFilePath() {
         return filePath;
