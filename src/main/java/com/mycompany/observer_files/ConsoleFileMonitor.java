@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ConsoleFileMonitor implements IFileMonitor
 {
-    private ArrayList<FileObj> fileList = new ArrayList<>();            // список объектов для работы с файлами
-    private ArrayList<IFileObserver> observers = new ArrayList<>();     // список наблюдателей
-    private ArrayList<FileInfo> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
+    private final ArrayList<FileObj> fileList = new ArrayList<>();            // список объектов для работы с файлами
+    private final ArrayList<IFileObserver> observers = new ArrayList<>();     // список наблюдателей
+    private final ArrayList<FileInfo> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
     
     
      // конструктор создающий объект класса ConsoleFileMonitor

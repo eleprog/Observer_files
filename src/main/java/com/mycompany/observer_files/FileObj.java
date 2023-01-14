@@ -21,10 +21,7 @@ public class FileObj {
     
     // получение статуса файла (обновлен или нет)
     public boolean getUpdateStatus() {
-        if(fileObj.lastModified() != fileLastModify) {
-            return true;
-        }
-        return false;
+        return fileObj.lastModified() != fileLastModify;
     }
 
     /** получение информации о файле filePath; fileSize(old); fileLastModify(old); fileSize; fileExist

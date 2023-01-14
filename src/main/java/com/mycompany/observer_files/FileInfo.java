@@ -16,10 +16,10 @@ public class FileInfo {
     @Override
     public String toString() {
         return  "путь: " + path + "\n" +
-                "существует: " + String.valueOf(exist) + "\n" +
+                "существует: " + exist + "\n" +
                 "предыдущая последняя модификация: " + new Date(lastModifyOld) + "\n" +
                 "последняя модификация: " + new Date(lastModify) + "\n" +
-                "предыдущий размер: " + String.valueOf(sizeOld) + " байт(а)\n" +
-                "размер: " + String.valueOf(size) + " байт(а)";
+                "предыдущий размер: " + sizeOld + " байт(а)\n" +
+                "размер: " + size + " байт(а)";
     }
 }
