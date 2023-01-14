@@ -1,7 +1,6 @@
 package com.mycompany.observer_files;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ConsoleFileMonitor implements IFileMonitor
 {
@@ -11,9 +10,7 @@ public class ConsoleFileMonitor implements IFileMonitor
     
     
      // конструктор создающий объект класса ConsoleFileMonitor
-    ConsoleFileMonitor(){  
-
-    }
+    ConsoleFileMonitor(){ }
     
     // конструктор принимающий один путь на файл
     ConsoleFileMonitor(String path){
@@ -42,24 +39,32 @@ public class ConsoleFileMonitor implements IFileMonitor
     public boolean removeFile(String path) {
         return fileList.remove(new FileObj(path));
     }
-    
-    @Override
+
     // добавление наблюдателя
-    public void addFileObserver(IFileObserver Obj) {
-        if(Obj != null)
-            observers.add(Obj);
+    @Override
+    public boolean addFileObserver(IFileObserver Obj) {
+        if(Obj == null)
+            return false;
+
+        for(IFileObserver observ: observers)
+            if(observ == Obj)
+                return false;
+
+        observers.add(Obj);
+        return true;
     }
 
-    @Override
     // удаление наблюдателя
-    public void removeFileObserver(IFileObserver Obj) {
-        if(Obj != null)
-            fileList.remove(Obj);
-    }
-    
-    
     @Override
+    public boolean removeFileObserver(IFileObserver Obj) {
+        if(Obj == null)
+            return false;
+
+        return fileList.remove(Obj);
+    }
+
     // оповещение наблюдателей о событии
+    @Override
     public void notifyFileObserver() {      
         for(IFileObserver fileObserv: observers)
             fileObserv.updateFileHandler(fileUpdatesList);

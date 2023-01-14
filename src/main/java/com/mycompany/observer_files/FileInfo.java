@@ -11,9 +11,7 @@ public class FileInfo {
     long    sizeOld;
     long    size;
 
-    FileInfo() {
-
-    }
+    FileInfo() {}
 
     @Override
     public String toString() {

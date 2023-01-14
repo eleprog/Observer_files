@@ -11,7 +11,6 @@ public class FileObj {
     private long fileSize;
     private boolean fileExist;
 
-
     // конструктор принимающий путь на файл
     FileObj(String path) {
         filePath = path;
