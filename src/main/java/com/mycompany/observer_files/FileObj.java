@@ -37,9 +37,10 @@ public class FileObj {
         data.lastModifyOld = fileLastModify;
 
         fileInfoUpdate();
-        data.lastModify = fileLastModify;
-        data.size = fileSize;
+
         data.exist = fileExist;
+        data.size = fileSize;
+        data.lastModify = fileLastModify;
 
         return data;
     }

@@ -20,13 +20,15 @@ public class Observer_files {
             String msg;
 
             if (!fileData.exist)
-                msg = "удалён";
-            else if (fileData.sizeOld != fileData.size && fileData.lastModify > fileData.lastModifyOld)
-                msg = "изменился размер файла";
+                msg = "Удалён";
+            else if(!fileData.existOld)
+                msg = "Создан";
+            else if (fileData.sizeOld != fileData.size)
+                msg = "Изменился размер файла";
             else
-                msg = "изменился";
+                msg = "Изменился";
 
-            return CowSayFormat.print(new Date() + " | " + fileData.path + " " + msg);
+            return CowSayFormat.print(fileData.path + " " + msg);
         };
 
         FileObserverToConsole.getInstance().setFormatPrint(format);

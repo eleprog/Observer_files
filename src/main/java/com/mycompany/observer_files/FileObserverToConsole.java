@@ -9,12 +9,14 @@ public class FileObserverToConsole implements IFileObserver {
     static private FormatPrintFilesModification formatPrint = (fileData) -> {
         String msg;
 
-        if(!fileData.exist)
-            msg = "удалён";
-        else if (fileData.sizeOld != fileData.size && fileData.lastModify > fileData.lastModifyOld)
-            msg = "изменился размер файла (" + fileData.sizeOld + " -> " + fileData.size + ")";
+        if (!fileData.exist)
+            msg = "Удалён";
+        else if(!fileData.existOld)
+            msg = "Создан";
+        else if (fileData.sizeOld != fileData.size)
+            msg = "Изменился размер файла";
         else
-            msg = "изменился";
+            msg = "Изменился";
 
         return new Date() + " | " + fileData.path + " " + msg;
     };
