@@ -1,7 +1,5 @@
 package com.mycompany.observer_files;
 
-import java.util.Date;
-
 public class Observer_files {
     public static void main(String[] args) throws InterruptedException {
 
@@ -10,13 +8,13 @@ public class Observer_files {
                             "test_files\\test3.txt",
                             "test_files\\test4.txt"};
 
-        ConsoleFileMonitor fileMonitor = new ConsoleFileMonitor(pathArr);   // создаём наблюдаемого и передаём туда массив путей на файлы
+        FileMonitor fileMonitor = new FileMonitor(pathArr);   // создаём наблюдаемого и передаём туда массив путей на файлы
         fileMonitor.addFileObserver(FileObserverToConsole.getInstance());   // добавляем наблюдаемому ссылку на наблюдателя
         
         fileMonitor.addFile("test_files\\test5.txt");
         fileMonitor.addFile("test_files\\test6.txt");
 
-        FormatPrintFilesModification format = (fileData) -> {
+        FileObserverToConsole.FormatPrint format = (fileData) -> {
             String msg;
 
             if (!fileData.exist)

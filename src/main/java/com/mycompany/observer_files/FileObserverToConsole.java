@@ -3,10 +3,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class FileObserverToConsole implements IFileObserver {
-
     static FileObserverToConsole instance;
 
-    static private FormatPrintFilesModification formatPrint = (fileData) -> {
+
+    public interface FormatPrint {
+        String print(FileInfo fileData);
+    }
+
+    /**
+     * формат вывода по умолчанию
+     */
+    static private FormatPrint formatPrint = (fileData) -> {
         String msg;
 
         if (!fileData.exist)
@@ -21,11 +28,15 @@ public class FileObserverToConsole implements IFileObserver {
         return new Date() + " | " + fileData.path + " " + msg;
     };
 
-    private FileObserverToConsole() {
 
-    }
+    /**
+     * конструктор private для singletone
+     */
+    private FileObserverToConsole() {}
 
-    // вывод списка изменений файлов
+    /**
+     * вывод списка изменений файлов
+     */
     @Override
     public void updateFileHandler(ArrayList<FileInfo> MessagesArr) {
         for(FileInfo info: MessagesArr) {
@@ -33,16 +44,16 @@ public class FileObserverToConsole implements IFileObserver {
         }
     }
 
-    // установка формата вывода
-    public void setFormatPrint(FormatPrintFilesModification format) {
+    /**
+     * установка формата вывода
+     */
+    public void setFormatPrint(FormatPrint format) {
         formatPrint = format;
     }
 
-    public FormatPrintFilesModification getFormatPrint() {
-        return formatPrint;
-    }
-
-    // глобальная точка доступа к объекту
+    /**
+     * глобальная точка доступа к объекту
+     */
     public static FileObserverToConsole getInstance() {
         if(instance == null)
             instance = new FileObserverToConsole();
@@ -50,6 +61,4 @@ public class FileObserverToConsole implements IFileObserver {
     }
 }
 
-interface FormatPrintFilesModification {
-    String print(FileInfo fileData);
-}
+

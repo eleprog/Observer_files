@@ -4,7 +4,7 @@ public class CowSayFormat {
 
     static String print(String str) {
         String formatStr = "_";
-        formatStr += "_".repeat(str.length() + 4);
+        formatStr += "_".repeat(str.length() + 3);
 
         formatStr += "\n\\ " + str + " /\n \\";
 

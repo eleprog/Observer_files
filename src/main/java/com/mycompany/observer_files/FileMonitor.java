@@ -2,23 +2,22 @@ package com.mycompany.observer_files;
 
 import java.util.ArrayList;
 
-public class ConsoleFileMonitor implements IFileMonitor
+public class FileMonitor implements IFileMonitor
 {
     private final ArrayList<FileObj> fileList = new ArrayList<>();            // список объектов для работы с файлами
     private final ArrayList<IFileObserver> observers = new ArrayList<>();     // список наблюдателей
     private final ArrayList<FileInfo> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
-    
-    
-     // конструктор создающий объект класса ConsoleFileMonitor
-    ConsoleFileMonitor(){ }
+
+
+    FileMonitor(){ }
     
     // конструктор принимающий один путь на файл
-    ConsoleFileMonitor(String path){
+    FileMonitor(String path){
         fileList.add(new FileObj(path));
     }
     
     // конструктор принимающий массив путей на файлы
-    ConsoleFileMonitor(String[] pathArr){   
+    FileMonitor(String[] pathArr){
         for(String path: pathArr)
             fileList.add(new FileObj(path));
     }
@@ -65,7 +64,7 @@ public class ConsoleFileMonitor implements IFileMonitor
 
     // оповещение наблюдателей о событии
     @Override
-    public void notifyFileObserver() {      
+    public void notifyFileObserver() {
         for(IFileObserver fileObserv: observers)
             fileObserv.updateFileHandler(fileUpdatesList);
     }
