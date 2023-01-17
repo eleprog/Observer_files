@@ -1,33 +1,26 @@
 package com.mycompany.observer_files;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class FileObserverToConsole implements IFileObserver {
     static FileObserverToConsole instance;
 
 
     public interface FormatPrint {
-        String print(FileInfo fileData);
+        String print(String[] fileData);
     }
 
     /**
      * формат вывода по умолчанию
      */
     static private FormatPrint formatPrint = (fileData) -> {
-        String msg;
+        String strOut = "";
 
-        if (!fileData.exist)
-            msg = "Удалён";
-        else if(!fileData.existOld)
-            msg = "Создан";
-        else if (fileData.sizeOld != fileData.size)
-            msg = "Изменился размер файла";
-        else
-            msg = "Изменился";
+        if(fileData != null)
+            for(String str: fileData)
+                strOut += str + " ";
 
-        return new Date() + " | " + fileData.path + " " + msg;
+        return strOut;
     };
-
 
     /**
      * конструктор private для singletone
@@ -38,8 +31,8 @@ public class FileObserverToConsole implements IFileObserver {
      * вывод списка изменений файлов
      */
     @Override
-    public void updateFileHandler(ArrayList<FileInfo> MessagesArr) {
-        for(FileInfo info: MessagesArr) {
+    public void updateFileHandler(ArrayList<String[]> MessagesArr) {
+        for(String[] info: MessagesArr) {
             System.out.println(formatPrint.print(info));
         }
     }

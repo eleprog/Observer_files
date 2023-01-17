@@ -3,13 +3,17 @@ package com.mycompany.observer_files;
 public class Observer_files {
     public static void main(String[] args) throws InterruptedException {
 
-        String[] pathArr = {"test_files\\test1.txt",    // список путей на файлы за которыми мы хотим следить
+        // список путей на файлы за которыми мы хотим следить
+        String[] pathArr = {"test_files\\test1.txt",
                             "test_files\\test2.txt",
                             "test_files\\test3.txt",
                             "test_files\\test4.txt"};
 
-        FileMonitor fileMonitor = new FileMonitor(pathArr);   // создаём наблюдаемого и передаём туда массив путей на файлы
-        fileMonitor.addFileObserver(FileObserverToConsole.getInstance());   // добавляем наблюдаемому ссылку на наблюдателя
+        // создаём наблюдаемого и передаём туда массив путей на файлы
+        FileMonitor fileMonitor = new FileMonitor(pathArr);
+
+        // добавляем наблюдаемому ссылку на наблюдателя
+        fileMonitor.addFileObserver(FileObserverToConsole.getInstance());
         
         fileMonitor.addFile("test_files\\test5.txt");
         fileMonitor.addFile("test_files\\test6.txt");
@@ -17,16 +21,16 @@ public class Observer_files {
         FileObserverToConsole.FormatPrint format = (fileData) -> {
             String msg;
 
-            if (!fileData.exist)
+            if (fileData[4] == "false")
                 msg = "Удалён";
-            else if(!fileData.existOld)
+            else if(fileData[1] == "false")
                 msg = "Создан";
-            else if (fileData.sizeOld != fileData.size)
+            else if (fileData[2] != fileData[5])
                 msg = "Изменился размер файла";
             else
                 msg = "Изменился";
 
-            return CowSayFormat.print(fileData.path + " " + msg);
+            return CowSayFormat.print(fileData[0] + " " + msg);
         };
 
         FileObserverToConsole.getInstance().setFormatPrint(format);

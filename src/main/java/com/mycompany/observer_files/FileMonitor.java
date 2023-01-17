@@ -6,7 +6,7 @@ public class FileMonitor implements IFileMonitor
 {
     private final ArrayList<FileObj> fileList = new ArrayList<>();            // список объектов для работы с файлами
     private final ArrayList<IFileObserver> observers = new ArrayList<>();     // список наблюдателей
-    private final ArrayList<FileInfo> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
+    private final ArrayList<String[]> fileUpdatesList = new ArrayList<>();    // список всех изменений в файлах
 
 
     FileMonitor(){ }

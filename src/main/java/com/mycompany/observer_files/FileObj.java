@@ -26,21 +26,21 @@ public class FileObj {
 
     /** получение информации о файле filePath; fileSize(old); fileLastModify(old); fileSize; fileExist
      *
-     * @return структура данных о файле с полями: path, sizeOld, size, lastModifyOld, lastModify, exist
+     * @return [0] - filePath, [1] - existOld, [2] - sizeOld, [3] - lastModifyOld,
+     * [4] - exist, [5] - size, [6] - lastModify
      */
-    FileInfo getFileInfo() {
-        FileInfo data = new FileInfo();
+    String[] getFileInfo() {
+        String[] data = new String[7];
 
-        data.path = filePath;
-        data.existOld = fileExist;
-        data.sizeOld = fileSize;
-        data.lastModifyOld = fileLastModify;
-
+        data[0] = filePath;
+        data[1] = String.valueOf(fileExist);
+        data[2] = String.valueOf(fileSize);
+        data[3] = String.valueOf(fileLastModify);
         fileInfoUpdate();
 
-        data.exist = fileExist;
-        data.size = fileSize;
-        data.lastModify = fileLastModify;
+        data[4] = String.valueOf(fileExist);
+        data[5] = String.valueOf(fileSize);
+        data[6] = String.valueOf(fileLastModify);
 
         return data;
     }
